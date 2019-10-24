@@ -35,7 +35,7 @@ You first need to install the required dependencies:
 
 ### Setup
 1. Fill the `.env` file with the expected information:
-APPID=[Sunshine Conversation APP ID]
+```APPID=[Sunshine Conversation APP ID]
 KEY=[SC app key]
 SECRET=[SC app secret]
 TARGET_BOT=BOT
@@ -44,7 +44,7 @@ TARGET_INTERCOM=INTERCOM
 ZENDESK_KEYWORD=[keyword to redirect the conversation to Zendesk]
 AGENT_TO_BOT_KEYWORD=[keyword to redirect the conversation to the bot]
 INTERCOM_KEYWORD=[keyword to redirect the conversation to Intercom]
-INTERCOM_ACCESS_TOKEN=[Intercom token from the app in the Intercom developer hub]
+INTERCOM_ACCESS_TOKEN=[Intercom token from the app in the Intercom developer hub]```
 
 2. Endpoints
 *In the code:
