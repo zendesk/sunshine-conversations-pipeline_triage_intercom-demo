@@ -1,0 +1,17 @@
+body {
+    background-color: white;
+    background-image: url("images/sunshine_logo.png"), url("images/sunshine_hero.png");
+    background-repeat: no-repeat;
+    background-size: 150px, cover;
+    background-position: left top, center;
+
+    padding: 170px 20px 20px 30px;
+
+    font-family: "Arial", serif;
+
+    color: #03363d;
+  }
+
+  fieldset {
+      width: 0px;
+  }

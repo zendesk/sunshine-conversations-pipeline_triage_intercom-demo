@@ -1,0 +1,19 @@
+{
+  "name": "fake-bot-workbench",
+  "version": "1.0.0",
+  "description": "HTML workbench simulating a bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "smooch-core": "8.7.3",
+    "intercom-client": "2.11.0",
+    "dotenv": "8.2.0",
+    "string-strip-html": "^4.3.2"
+  }
+}

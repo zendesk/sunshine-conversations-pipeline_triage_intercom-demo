@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+    </head>
+
+    <script>
+        const appID = "5d796095205c150011a25e06";
+        var appUserId = "";
+        
+        !function(e,n,t,r){
+                function o(){try{var e;if((e="string"==typeof this.response?JSON.parse(this.response):this.response).url){var t=n.getElementsByTagName("script")[0],r=n.createElement("script");r.async=!0,r.src=e.url,t.parentNode.insertBefore(r,t)}}catch(e){}}var s,p,a,i=[],c=[];e[t]={init:function(){s=arguments;var e={then:function(n){return c.push({type:"t",next:n}),e},catch:function(n){return c.push({type:"c",next:n}),e}};return e},on:function(){i.push(arguments)},render:function(){p=arguments},destroy:function(){a=arguments}},e.__onWebMessengerHostReady__=function(n){if(delete e.__onWebMessengerHostReady__,e[t]=n,s)for(var r=n.init.apply(n,s),o=0;o<c.length;o++){var u=c[o];r="t"===u.type?r.then(u.next):r.catch(u.next)}p&&n.render.apply(n,p),a&&n.destroy.apply(n,a);for(o=0;o<i.length;o++)n.on.apply(n,i[o])};var u=new XMLHttpRequest;u.addEventListener("load",o),u.open("GET","https://"+r+".webloader.smooch.io/",!0),u.responseType="json",u.send()
+            }(window,document,"Smooch",appID);
+        
+        Smooch.init({ appId: appID })
+                .then(
+                    function() {
+                        // Something went well during initialization
+                        Smooch.startConversation();
+                    },
+                    function(err) {
+                        // Something went wrong during initialization
+                    }
+                );
+
+        // This event triggers when the widget is opened
+        Smooch.on('widget:opened', function() {
+            console.log('Widget is opened!');
+            let appUser = Smooch.getUser();
+                if(appUser){
+                    appUserId = appUser._id;
+                }
+        });
+
+    </script>
+
+    <body>
+        <h1>Hello bot</h1>
+
+        <h2>User messages:</h2>
+        <fieldset id=webhooks>
+            <p>Conversation:</p>
+            <textarea id="conversation" rows="20" cols="60" readonly>Messages will appear here</textarea>
+        </fieldset>
+
+        <h2>Bot messages:</h2>
+        <fieldset id=appmakermessage>
+            <p>appUserID:
+            <input type="text" id="appuser" value=""></p>
+            <p>Payload:</p>
+            <textarea id="message" rows="5" cols="60">Ah ah ah, you didn't say the magic word!</textarea>
+            <p><button id="submit">POST appMaker message</button></p>
+        </fieldset>
+    </body>
+
+    <script>
+        const submitButton = document.querySelector('#submit'); 
+        const messageInput = document.querySelector('#message'); 
+        const appuserInput = document.querySelector('#appuser'); 
+        submitButton.onclick = function() {
+            if(appUserId != "" && messageInput.value != ""){
+                fetch('/botmessage', {
+                    method: 'post',
+                    body: JSON.stringify({ appUser: appUserId, message: messageInput.value }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+        }
+
+        //const getmsgButton = document.querySelector('#getmsg'); 
+        const msgLabel = document.querySelector('#conversation'); 
+        // set interval
+        var tid = setInterval(getMessages, 2000);
+        function getMessages() {
+            if(appUserId != ""){
+                appuserInput.value = appUserId;
+                fetch('https://amoveo.serveo.net/users/'+appUserId+'/messages')
+                    .then(
+                        function(response) {
+                        if (response.status !== 200) {
+                            console.log('Looks like there was a problem. Status Code: ' + response.status);
+                            return;
+                        }
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            msgLabel.innerHTML = JSON.stringify(data, null, 2);
+                            //TODO get the AppUser ID as well
+                            //TODO add an end of line for readability
+                        });
+                        }
+                    )
+                    .catch(function(err) {
+                        abortTimer();
+                        console.log('Fetch Error :-S', err);
+                    });
+            }
+        }
+        function abortTimer() { // to be called when you want to stop the timer
+            clearInterval(tid);
+        }
+
+        /*getmsgButton.onclick = function() {
+            fetch('/messages')
+                .then(
+                    function(response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' + response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        msgLabel.innerHTML = JSON.stringify(data, null, 2);
+                    });
+                    }
+                )
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        }*/
+    </script>
+</html>
