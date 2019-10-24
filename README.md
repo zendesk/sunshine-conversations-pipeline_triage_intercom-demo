@@ -58,7 +58,10 @@ In the /public/workbench.html file
 In the developer hub, in your app webhook section, provide the endpoint to receive Intercom messages: https://[your URL]/intercom
 
 - On Sunshine Conversation:
-Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
+1. Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
+2. Setup the Pipeline in this order
+   - Bot processor: https://[your URL]/messages
+   - Triage processor: https://[your URL]/triage
 
 
 ## What do do next?
