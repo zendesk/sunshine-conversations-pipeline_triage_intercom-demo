@@ -61,7 +61,7 @@ In the developer hub, in your app webhook section, provide the endpoint to recei
 Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
 
 
-## What do do?
+## What do do next?
 - [ ] send the history of the conversation to Intercom when necessary
 - [ ] use a specific syntax to transfer the control of the conversation from one actor to another and use delegates to hide them from the user window (only on SDKs)
 - [ ] make a persona for the bot, for a better demo
