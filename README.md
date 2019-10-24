@@ -35,7 +35,8 @@ You first need to install the required dependencies:
 
 ### Setup
 1. Fill the `.env` file with the expected information:
-```APPID=[Sunshine Conversation APP ID]
+```
+APPID=[Sunshine Conversation APP ID]
 KEY=[SC app key]
 SECRET=[SC app secret]
 TARGET_BOT=BOT
@@ -44,22 +45,23 @@ TARGET_INTERCOM=INTERCOM
 ZENDESK_KEYWORD=[keyword to redirect the conversation to Zendesk]
 AGENT_TO_BOT_KEYWORD=[keyword to redirect the conversation to the bot]
 INTERCOM_KEYWORD=[keyword to redirect the conversation to Intercom]
-INTERCOM_ACCESS_TOKEN=[Intercom token from the app in the Intercom developer hub]```
+INTERCOM_ACCESS_TOKEN=[Intercom token from the app in the Intercom developer hub]
+```
 
 2. Endpoints
-*In the code:
+- In the code:
 In the /public/workbench.html file 
-- provide your Sunshine conversation App ID in : `const appID = "[your app id]";`
-- in the `function getMessages()`, provide your server address in the fetch (a full path is necessary for Serveo, on ngrok a relative path would be enough)
+  - provide your Sunshine conversation App ID in : `const appID = "[your app id]";`
+  - in the `function getMessages()`, provide your server address in the fetch (a full path is necessary for Serveo, on ngrok a relative path would be enough)
 
-*On Intercom:
+- On Intercom:
 In the developer hub, in your app webhook section, provide the endpoint to receive Intercom messages: https://[your URL]/intercom
 
-*On Sunshine Conversation:
+- On Sunshine Conversation:
 Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
 
 
 ## What do do?
-* send the history of the conversation to Intercom when necessary
-* use a specific syntax to transfer the control of the conversation from one actor to another and use delegates to hide them from the user window (only on SDKs)
-* make a persona for the bot, for a better demo
+- [ ] send the history of the conversation to Intercom when necessary
+- [ ] use a specific syntax to transfer the control of the conversation from one actor to another and use delegates to hide them from the user window (only on SDKs)
+- [ ] make a persona for the bot, for a better demo
