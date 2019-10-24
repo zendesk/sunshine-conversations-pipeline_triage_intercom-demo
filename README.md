@@ -10,7 +10,7 @@ The "bot" will analyse the user messages to determine if the message should be s
 
 Agents on both business system can also redirect the conversation to one another or back to the bot.
 
-[Demo Video](https://vimeo.com/user104337096/review/368610351/fd965dad72)
+[Demo Video](https://vimeo.com/368610351)
 
 ## How does it work?
 We use the Pipeline API for this project. We have 2 processors:
