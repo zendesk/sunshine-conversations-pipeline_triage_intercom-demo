@@ -30,11 +30,11 @@ The triage processor will read the message metadata given by the bot and dispatc
 4. A tool to give access to your server (serveo is advised to interact with Intercom)
 
 ### Installation
-You first need to install the required dependencies:
+After cloning the repo, you need to install the required dependencies:
 `npm install`
 
 ### Setup
-1. Fill the `.env` file with the expected information:
+**1. `.env` file**
 ```
 APPID=[Sunshine Conversation APP ID]
 KEY=[SC app key]
@@ -48,20 +48,22 @@ INTERCOM_KEYWORD=[keyword to redirect the conversation to Intercom]
 INTERCOM_ACCESS_TOKEN=[Intercom token from the app in the Intercom developer hub]
 ```
 
-2. Endpoints
-- In the code:
+**2. Endpoints**
+
+**- In the code:**
 In the /public/workbench.html file 
   - provide your Sunshine conversation App ID in : `const appID = "[your app id]";`
   - in the `function getMessages()`, provide your server address in the fetch (a full path is necessary for Serveo, on ngrok a relative path would be enough)
 
-- On Intercom:
+**- On Intercom:**
+
 In the developer hub, in your app webhook section, provide the endpoint to receive Intercom messages: https://[your URL]/intercom
 
-- On Sunshine Conversation:
-1. Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
-2. Setup the Pipeline in this order
-   - Bot processor: https://[your URL]/messages
-   - Triage processor: https://[your URL]/triage
+**- On Sunshine Conversation:**
+  1. Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
+  2. Setup the Pipeline in this order
+     - Bot processor: https://[your URL]/messages
+     - Triage processor: https://[your URL]/triage
 
 
 ## What do do next?
