@@ -53,7 +53,7 @@ INTERCOM_ACCESS_TOKEN=[Intercom token from the app in the Intercom developer hub
 **- In the code:**
 In the /public/workbench.html file 
   - provide your Sunshine conversation App ID in : `const appID = "[your app id]";`
-  - in the `function getMessages()`, provide your server address in the fetch (a full path is necessary for Serveo, on ngrok a relative path would be enough)
+  - in the `function getMessages()`, provide your server address in the fetch (a full path is necessary for Serveo, on ngrok a relative path would be enough): `https://[your URL]/users/'+appUserId+'/messages`
 
 **- On Intercom:**
 
