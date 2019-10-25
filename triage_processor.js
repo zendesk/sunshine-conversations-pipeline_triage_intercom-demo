@@ -66,8 +66,37 @@ class TriageProcessor {
         console.log('sendToIntercom');
         // POST a message as a user into Intercom
         let record = await this.storage.getUserRecord({ USER_ID: payload.appUser._id });
-        //let body = payload.message.map(message => message.text).join('\n');
-        let body = payload.message.text;
+
+        let body = '';
+
+        //Check if we should the send the conversation history to Intercom
+        let history = payload.message.metadata.history;
+        if(history){
+            //Determine from when we need the history (1mn history for demo purposes)
+            var since = Math.round((new Date()).getTime() / 1000)-60000;
+            //Get the conversation from Sunshine conversation and push an initial message to Intercom
+            if (this.smooch) {
+                let appUserId = payload.appUser._id;
+                this.smooch.appUsers
+                .getMessages(appUserId,{
+                    query: {
+                        after: since
+                    }
+                })
+                .then((response) => {
+                    console.log(response);
+                    console.log('Sending history to Intercom');
+                    
+                    body = response.messages.map(message => "<b>"+ message.name + "</b> : " + message.text).join('<br><br>');
+                })
+                .catch((err) => {
+                    console.log('API ERROR:\n', err);
+                });
+            }
+        }else{
+            //body = payload.messages.map(message => message.text).join('\n');
+            body = payload.message.text;
+        }
 
         if (!record) {
             try{
@@ -104,6 +133,7 @@ class TriageProcessor {
 
     //Send to Sunshine
     async sendToSunshine(payload){
+        console.log(payload);
         if (payload.type === 'notification_event') {
             const raw = payload.data.item.conversation_parts.conversation_parts
                 .map(part => part.body)
@@ -120,7 +150,9 @@ class TriageProcessor {
                 .sendMessage(appUserId,{
                     text: text,
                     role: 'appMaker',
-                    type: 'text'
+                    type: 'text',
+                    name: 'Intercom',
+                    avatarUrl: 'http://c93fea60bb98e121740fc38ff31162a8.s3.amazonaws.com/wp-content/uploads/2016/04/intercom.png'
                 })
                 .then((response) => {
                     console.log(response);
