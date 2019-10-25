@@ -22,6 +22,12 @@ The triage processor will read the message metadata given by the bot and dispatc
 - to Zendesk: it will let the message flow to the business system by a simple continue message
 - to Intercom: it will send the message to Intercom using their Conversation API and will not let it flow to the end of the Pipeline
 
+![screen shot](https://media.smooch.io/apps/5d796095205c150011a25e06/Vg7qXHBwTizvmO3ZwG9gryaj/DEMO%20(18).jpg)
+
+In order to redirect the conversation from one business system to another, the appMaker messages are also analyzed by the bot and it will send a redirection message under the form of an appUser message to move the conversation to the new targeted business system. We have a `beforeDisplay` delegate on the WebMessenger in order to hide the redirection messages from the user.
+
+![screen shot](https://media.smooch.io/apps/5d796095205c150011a25e06/nkdDnf573NWo8Mil2DtEqmoG/DEMO%20(19).jpg)
+
 ## How to make it run?
 ### Prerequisite
 1. A Sunshine conversation App
@@ -57,13 +63,13 @@ In the /public/workbench.html file
 
 **- On Intercom:**
 
-In the developer hub, in your app webhook section, provide the endpoint to receive Intercom messages: https://[your URL]/intercom
+In the developer hub, in your app webhook section, provide the endpoint to receive Intercom messages: `https://[your URL]/intercom`
 
 **- On Sunshine Conversation:**
-  1. Setup a webhook to receive and analyse appMaker messages: https://[your URL]/agentmessage
+  1. Setup a webhook to receive and analyse appMaker messages: `https://[your URL]/agentmessage`
   2. Setup the Pipeline in this order
-     - Bot processor: https://[your URL]/messages
-     - Triage processor: https://[your URL]/triage
+     - Bot processor: `https://[your URL]/messages`
+     - Triage processor: `https://[your URL]/triage`
 
 
 ## What do do next?
