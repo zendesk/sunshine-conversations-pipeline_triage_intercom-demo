@@ -73,6 +73,6 @@ In the developer hub, in your app webhook section, provide the endpoint to recei
 
 
 ## What do do next?
-- [ ] send the history of the conversation to Intercom when necessary
-- [ ] use a specific syntax to transfer the control of the conversation from one actor to another and use delegates to hide them from the user window (only on SDKs)
-- [ ] make a persona for the bot, for a better demo
+- [X] send the history of the conversation to Intercom when necessary
+- [X] use a specific syntax to transfer the control of the conversation from one actor to another and use delegates to hide them from the user window (only on SDKs)
+- [X] make a persona for the bot, for a better demo
