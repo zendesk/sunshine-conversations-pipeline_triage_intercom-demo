@@ -14,6 +14,6 @@
     "smooch-core": "8.7.3",
     "intercom-client": "2.11.0",
     "dotenv": "8.2.0",
-    "string-strip-html": "^4.3.2"
+    "string-strip-html": "^4.5.1"
   }
 }
